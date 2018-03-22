@@ -22,7 +22,7 @@ public class Tugas1 extends javax.swing.JFrame {
      */
     
     private List<Tugas_1> listKota = new ArrayList<>();
-    private List<Tugas_1> listGol = new ArrayList<>();
+    private List<Golongan> listGol = new ArrayList<>();
     
     private void populateData() {
         Tugas_1 kota1 = new Tugas_1();
@@ -57,21 +57,25 @@ public class Tugas1 extends javax.swing.JFrame {
     }
     
     private void biayaData() {
-        Tugas_1 gol1 = new Tugas_1();
-        gol1.setBiaya(800000);
-        gol1.setTransport(5000);
+        Golongan gol1 = new Golongan();
+        gol1.setNamaGolongan("Golongan I");
+        gol1.setBiaya(800000.00);
+        gol1.setTransport(5000.00);
         
-        Tugas_1 gol2 = new Tugas_1();
-        gol2.setBiaya(900000);
-        gol2.setTransport(4500);
+        Golongan gol2 = new Golongan();
+        gol2.setNamaGolongan("Golongan II");
+        gol2.setBiaya(900000.00);
+        gol2.setTransport(4500.00);
         
-        Tugas_1 gol3 = new Tugas_1();
-        gol3.setBiaya(950000);
-        gol3.setTransport(4000);
+        Golongan gol3 = new Golongan();
+        gol3.setNamaGolongan("Golongan III");
+        gol3.setBiaya(950000.00);
+        gol3.setTransport(4000.00);
         
-        Tugas_1 gol4 = new Tugas_1();
-        gol4.setBiaya(1000000);
-        gol4.setTransport(5000);
+        Golongan gol4 = new Golongan();
+        gol4.setNamaGolongan("Golongan IV");
+        gol4.setBiaya(1000000.00);
+        gol4.setTransport(5000.00);
         
         listGol.add(gol1);
         listGol.add(gol2);
@@ -150,6 +154,11 @@ public class Tugas1 extends javax.swing.JFrame {
         });
 
         jButton2.setText("Bersihkan");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setText("Keluar");
 
@@ -274,27 +283,41 @@ public class Tugas1 extends javax.swing.JFrame {
             .forEach(e -> {
                 jTextField1.setText(e.getNamaKota());
                 jTextField2.setText(String.valueOf(e.getJarak()));
-                jTextField4.setText(String.valueOf(e.getBiaya()));
-                jTextField5.setText(String.valueOf(e.getTransport()));
             });      
     }//GEN-LAST:event_jList1MouseClicked
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        jComboBox1.setModel(combo);
-        listGol.forEach(c -> {
-            combo.addElement(c.getGol());
-        });
+        
+        System.out.println(jComboBox1.getSelectedItem());
+       
+       
+        listGol.stream().filter(data->jComboBox1.getSelectedItem().equals(data.getNamaGolongan()))
+            .forEach(c -> {
+                jTextField4.setText(String.valueOf(c.getBiaya()));
+                jTextField5.setText(String.valueOf(c.getTransport()));
+                
+                //mengambil nilai
+                int hari        = Integer.parseInt(jTextField3.getText());
+                int jaraknya    = Integer.parseInt(jTextField2.getText());
+                
+                jTextArea1.setText("Jarak Perjalanan\t= "+jaraknya+" Km \nLama Dinas\t \t= "+String.valueOf(hari)+" Hari");
+                
+            });
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
         // TODO add your handling code here:
-        listGol.stream().filter(data->jComboBox1.getSelected().equals(data.getGol()))
-            .forEach(c -> {
-                jTextField4.setText(String.valueOf(c.getBiaya()));
-                jTextField5.setText(String.valueOf(c.getTransport()));
-            });  
+       
     }//GEN-LAST:event_jComboBox1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        model.removeAllElements();
+    }//GEN-LAST:event_jButton2MouseClicked
     
     
     /**

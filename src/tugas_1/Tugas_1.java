@@ -31,28 +31,4 @@ public class Tugas_1 {
     public void setJarak(Integer jarak) {
         this.jarak = jarak;
     }
-    
-    public String getGol() {
-        return gol;
-    }
-    
-    public void setGol(String gol) {
-        this.gol = gol;
-    }
-    
-   public Integer getBiaya() {
-       return biaya;
-   }
-   
-   public void setBiaya(Integer biaya) {
-       this.biaya = biaya;
-   }
-   
-   public Integer getTransport() {
-       return transport;
-   }
-   
-   public void setTransport(Integer transport) {
-       this.transport = transport;
-   }
 }
