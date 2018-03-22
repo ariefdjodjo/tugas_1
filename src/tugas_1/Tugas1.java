@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package tugas_1;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
@@ -12,12 +13,28 @@ import javax.swing.JList;
  * @author LENOVO
  */
 public class Tugas1 extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Tugas1
      */
+    
+    private JList<Tugas_1> listKota = new ArrayList<>();
+    
+    private void populateData() {
+        Tugas_1 kota1 = new Tugas_1();
+        kota1.setNamaKota("Jakarta");
+        kota1.setJarak(800);
+        
+        Tugas_1 kota2 = new Tugas_1();
+        kota2.setNamaKota("Bandung");
+        kota2.setJarak(700);
+        listKota.add(kota1);
+        listKota.add(kota2);
+        
+    }
     public Tugas1() {
         initComponents();
+        populateData();
     }
 
     /**
@@ -54,6 +71,11 @@ public class Tugas1 extends javax.swing.JFrame {
 
         jLabel1.setText("Nama Kota Kantor Cabang");
 
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jLabel2.setText("Kantor Pilihan");
@@ -120,9 +142,8 @@ public class Tugas1 extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                            .addComponent(jTextField2)
                             .addComponent(jComboBox1, 0, 174, Short.MAX_VALUE)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -179,49 +200,27 @@ public class Tugas1 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+        model.removeAllElements();
         jList1.setModel(model);
-        model.addElement("Jakarta");
-        model.addElement("Bandung");
-        model.addElement("Surabaya");
-        model.addElement("Semarang");
-        model.addElement("Medan");
-        model.addElement("Balikpapan");
-        jList1 = setText("model");
+        listKota.forEach(s ->{
+            model.addElement(s.getNamaKota());
+         });
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        // TODO add your handling code here:
+               
+    }//GEN-LAST:event_jList1MouseClicked
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tugas1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tugas1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tugas1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tugas1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Tugas1().setVisible(true);
-            }
+         /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
+            new Tugas1().setVisible(true);
         });
     }
 
@@ -250,5 +249,4 @@ public class Tugas1 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 
-    
 }

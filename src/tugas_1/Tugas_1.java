@@ -10,13 +10,24 @@ package tugas_1;
  * @author LENOVO
  */
 public class Tugas_1 {
+    private String namaKota;
+    private Integer jarak;
+    
+    public String getNamaKota() {
+        return namaKota;
+    }
+    
+    public void setNamaKota(String namaKota) {
+        this.namaKota = namaKota;
+        
+    }
+    
+    public Integer getJarak() {
+        return jarak;
+    }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        System.out.println("Hello");
+    public void setJarak(Integer jarak) {
+        this.jarak = jarak;
     }
     
 }
