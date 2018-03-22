@@ -5,6 +5,9 @@
  */
 package tugas_1;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
@@ -18,23 +21,68 @@ public class Tugas1 extends javax.swing.JFrame {
      * Creates new form Tugas1
      */
     
-    private JList<Tugas_1> listKota = new ArrayList<>();
+    private List<Tugas_1> listKota = new ArrayList<>();
+    private List<Tugas_1> listGol = new ArrayList<>();
     
     private void populateData() {
         Tugas_1 kota1 = new Tugas_1();
         kota1.setNamaKota("Jakarta");
         kota1.setJarak(800);
+
         
         Tugas_1 kota2 = new Tugas_1();
         kota2.setNamaKota("Bandung");
         kota2.setJarak(700);
+        
+        
+        Tugas_1 kota3 = new Tugas_1();
+        kota3.setNamaKota("Semarang");
+        kota3.setJarak(300);
+        
+        
+        Tugas_1 kota4 = new Tugas_1();
+        kota4.setNamaKota("Makasar");
+        kota4.setJarak(900);
+        
+        
+        Tugas_1 kota5 = new Tugas_1();
+        kota5.setNamaKota("Medan");
+        kota5.setJarak(1900);
+        
         listKota.add(kota1);
         listKota.add(kota2);
-        
+        listKota.add(kota3);
+        listKota.add(kota4);
+        listKota.add(kota5);
     }
+    
+    private void biayaData() {
+        Tugas_1 gol1 = new Tugas_1();
+        gol1.setBiaya(800000);
+        gol1.setTransport(5000);
+        
+        Tugas_1 gol2 = new Tugas_1();
+        gol2.setBiaya(900000);
+        gol2.setTransport(4500);
+        
+        Tugas_1 gol3 = new Tugas_1();
+        gol3.setBiaya(950000);
+        gol3.setTransport(4000);
+        
+        Tugas_1 gol4 = new Tugas_1();
+        gol4.setBiaya(1000000);
+        gol4.setTransport(5000);
+        
+        listGol.add(gol1);
+        listGol.add(gol2);
+        listGol.add(gol3);
+        listGol.add(gol4);
+    }
+    
     public Tugas1() {
         initComponents();
         populateData();
+        biayaData();
     }
 
     /**
@@ -112,6 +160,16 @@ public class Tugas1 extends javax.swing.JFrame {
         });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Golongan", "Golongan I", "Golongan II", "Golongan III", "Golongan IV" }));
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseClicked(evt);
+            }
+        });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -201,6 +259,7 @@ public class Tugas1 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         model.removeAllElements();
+  
         jList1.setModel(model);
         listKota.forEach(s ->{
             model.addElement(s.getNamaKota());
@@ -211,8 +270,32 @@ public class Tugas1 extends javax.swing.JFrame {
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         // TODO add your handling code here:
-               
+         listKota.stream().filter(data->jList1.getSelectedValue().equals(data.getNamaKota()))
+            .forEach(e -> {
+                jTextField1.setText(e.getNamaKota());
+                jTextField2.setText(String.valueOf(e.getJarak()));
+                jTextField4.setText(String.valueOf(e.getBiaya()));
+                jTextField5.setText(String.valueOf(e.getTransport()));
+            });      
     }//GEN-LAST:event_jList1MouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        jComboBox1.setModel(combo);
+        listGol.forEach(c -> {
+            combo.addElement(c.getGol());
+        });
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
+        // TODO add your handling code here:
+        listGol.stream().filter(data->jComboBox1.getSelected().equals(data.getGol()))
+            .forEach(c -> {
+                jTextField4.setText(String.valueOf(c.getBiaya()));
+                jTextField5.setText(String.valueOf(c.getTransport()));
+            });  
+    }//GEN-LAST:event_jComboBox1MouseClicked
+    
     
     /**
      * @param args the command line arguments
@@ -225,6 +308,7 @@ public class Tugas1 extends javax.swing.JFrame {
     }
 
     DefaultListModel model = new DefaultListModel();
+    DefaultComboBoxModel combo = new DefaultComboBoxModel();
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

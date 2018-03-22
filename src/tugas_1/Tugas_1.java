@@ -12,6 +12,9 @@ package tugas_1;
 public class Tugas_1 {
     private String namaKota;
     private Integer jarak;
+    private String gol;
+    private Integer biaya;
+    private Integer transport;
     
     public String getNamaKota() {
         return namaKota;
@@ -19,7 +22,6 @@ public class Tugas_1 {
     
     public void setNamaKota(String namaKota) {
         this.namaKota = namaKota;
-        
     }
     
     public Integer getJarak() {
@@ -30,4 +32,27 @@ public class Tugas_1 {
         this.jarak = jarak;
     }
     
+    public String getGol() {
+        return gol;
+    }
+    
+    public void setGol(String gol) {
+        this.gol = gol;
+    }
+    
+   public Integer getBiaya() {
+       return biaya;
+   }
+   
+   public void setBiaya(Integer biaya) {
+       this.biaya = biaya;
+   }
+   
+   public Integer getTransport() {
+       return transport;
+   }
+   
+   public void setTransport(Integer transport) {
+       this.transport = transport;
+   }
 }
